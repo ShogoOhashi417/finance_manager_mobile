@@ -33,3 +33,5 @@ target 'FinanceManagerMobile' do
     )
   end
 end
+
+pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
