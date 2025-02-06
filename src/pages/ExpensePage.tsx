@@ -1,12 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, Button, Modal, TextInput } from 'react-native';
 import { theme } from '../styles/theme';
 
-const dummyData = [
-    { id: '1', description: '食費', amount: '¥1,000' },
-    { id: '2', description: '交通費', amount: '¥500' },
-    { id: '3', description: '娯楽費', amount: '¥2,000' },
-];
+const apiUrl = 'http://localhost/test-api2';
+
+const fetchData = async (setExpenditureList) => {
+    try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+            throw new Error('ネットワークの応答が正常ではありません');
+        }
+        const data = await response.json();
+        setExpenditureList(data.expenditure_info_list);
+    } catch (error) {
+        console.error('データの取得中にエラーが発生しました:', error);
+    }
+};
 
 export const ExpensePage = () => {
     const [modalVisible, setModalVisible] = useState(false);
@@ -14,22 +23,27 @@ export const ExpensePage = () => {
     const [amount, setAmount] = useState('');
     const [date, setDate] = useState('');
     const [category, setCategory] = useState('');
+    const [expenditureList, setExpenditureList] = useState([]);
 
     const addExpense = () => {
         // ここで支出を追加するロジックを実装します
         setModalVisible(false);
     };
 
+    useEffect(() => {
+        fetchData(setExpenditureList);
+    }, []);
+
     return (
         <View style={theme.container}>
             <Text style={theme.title}>支出管理</Text>
             <Button title="支出追加" onPress={() => setModalVisible(true)} />
             <FlatList
-                data={dummyData}
+                data={expenditureList}
                 keyExtractor={item => item.id}
                 renderItem={({ item }) => (
                     <View style={theme.item}>
-                        <Text style={theme.description}>{item.description}</Text>
+                        <Text style={theme.description}>{item.name}</Text>
                         <Text style={theme.amount}>{item.amount}</Text>
                     </View>
                 )}
