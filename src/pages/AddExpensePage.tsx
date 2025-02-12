@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
 import { theme } from '../styles/theme';
+import { View, Text, TextInput, Button } from 'react-native';
 
-export const AddExpensePage = ({ navigation }) => {
+export const AddExpensePage = ({ navigation }: { navigation: any }) => {
     const [description, setDescription] = useState('');
     const [amount, setAmount] = useState('');
     const [date, setDate] = useState('');
@@ -43,4 +43,4 @@ export const AddExpensePage = ({ navigation }) => {
             <Button title="保存" onPress={saveExpense} />
         </View>
     );
-}; 
+};
