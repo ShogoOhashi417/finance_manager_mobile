@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, Button, Modal, TextInput } from 'react-native';
 import { theme } from '../styles/theme';
+import { useNavigation } from '@react-navigation/native';
 
 const apiUrl = 'http://localhost/test-api2';
 
@@ -18,6 +19,7 @@ const fetchData = async (setExpenditureList) => {
 };
 
 export const ExpensePage = () => {
+    const navigation = useNavigation();
     const [modalVisible, setModalVisible] = useState(false);
     const [description, setDescription] = useState('');
     const [amount, setAmount] = useState('');
@@ -26,7 +28,6 @@ export const ExpensePage = () => {
     const [expenditureList, setExpenditureList] = useState([]);
 
     const addExpense = () => {
-        // ここで支出を追加するロジックを実装します
         setModalVisible(false);
     };
 
@@ -37,10 +38,10 @@ export const ExpensePage = () => {
     return (
         <View style={theme.container}>
             <Text style={theme.title}>支出管理</Text>
-            <Button title="支出追加" onPress={() => setModalVisible(true)} />
+            <Button title="支出追加" onPress={() => navigation.navigate('AddExpensePage')} />
             <FlatList
                 data={expenditureList}
-                keyExtractor={item => item.id}
+                keyExtractor={(item: { id: string }) => item.id}
                 renderItem={({ item }) => (
                     <View style={theme.item}>
                         <Text style={theme.description}>{item.name}</Text>
