@@ -65,10 +65,14 @@ export const theme = StyleSheet.create({
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
     },
     input: {
+        borderWidth: 1,
+        borderColor: '#ccc',
+        borderRadius: 5,
         width: '80%',
         padding: 10,
-        margin: 10,
+        marginTop: 10,
+        margin: 8,
         backgroundColor: '#fff',
-        borderRadius: 5,
+        alignSelf: 'center',
     },
 });
