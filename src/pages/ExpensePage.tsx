@@ -26,7 +26,6 @@ export const ExpensePage = () => {
     const [expenditureList, setExpenditureList] = useState([]);
 
     const addExpense = () => {
-        // ここで支出を追加するロジックを実装します
         setModalVisible(false);
     };
 
