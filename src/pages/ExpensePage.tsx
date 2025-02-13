@@ -3,9 +3,10 @@ import { View, Text, FlatList, Button, Modal, TextInput } from 'react-native';
 import { theme } from '../styles/theme';
 import { useNavigation } from '@react-navigation/native';
 
-const apiUrl = 'http://localhost/test-api2';
+// TODO: エンドポイントを変更
+const apiUrl = 'http://localhost/api/v1/expenditure';
 
-const fetchData = async (setExpenditureList) => {
+const fetchData = async (setExpenditureList: any) => {
     try {
         const response = await fetch(apiUrl);
         if (!response.ok) {
