@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, Button, Modal, TextInput } from 'react-native';
+import { View, Text, FlatList, Button} from 'react-native';
 import { theme } from '../styles/theme';
 import { useNavigation } from '@react-navigation/native';
 
@@ -21,16 +21,7 @@ const fetchData = async (setExpenditureList: any) => {
 
 export const ExpensePage = () => {
     const navigation = useNavigation();
-    const [modalVisible, setModalVisible] = useState(false);
-    const [description, setDescription] = useState('');
-    const [amount, setAmount] = useState('');
-    const [date, setDate] = useState('');
-    const [category, setCategory] = useState('');
     const [expenditureList, setExpenditureList] = useState([]);
-
-    const addExpense = () => {
-        setModalVisible(false);
-    };
 
     useEffect(() => {
         fetchData(setExpenditureList);
@@ -50,42 +41,6 @@ export const ExpensePage = () => {
                     </View>
                 )}
             />
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={() => setModalVisible(false)}
-            >
-                <View style={theme.modalView}>
-                    <TextInput
-                        placeholder="支出名"
-                        value={description}
-                        onChangeText={setDescription}
-                        style={theme.input}
-                    />
-                    <TextInput
-                        placeholder="金額"
-                        value={amount}
-                        onChangeText={setAmount}
-                        style={theme.input}
-                        keyboardType="numeric"
-                    />
-                    <TextInput
-                        placeholder="日時"
-                        value={date}
-                        onChangeText={setDate}
-                        style={theme.input}
-                    />
-                    <TextInput
-                        placeholder="カテゴリー"
-                        value={category}
-                        onChangeText={setCategory}
-                        style={theme.input}
-                    />
-                    <Button title="追加" onPress={addExpense} />
-                    <Button title="キャンセル" onPress={() => setModalVisible(false)} />
-                </View>
-            </Modal>
         </View>
     );
 };
