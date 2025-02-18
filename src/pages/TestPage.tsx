@@ -8,7 +8,6 @@ export const TestPage = () => {
 
     return (
         <View style={theme.container}>
-            <Button title="次へボタン" onPress={() => navigation.navigate('NextPage')} />
             <Button title="収入管理" onPress={() => navigation.navigate('IncomePage')} />
             <Button title="支出管理" onPress={() => navigation.navigate('ExpensePage')} />
             <Button title="カテゴリー管理" onPress={() => navigation.navigate('CategoryPage')} />
