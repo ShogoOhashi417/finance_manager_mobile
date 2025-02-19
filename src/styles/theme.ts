@@ -75,4 +75,8 @@ export const theme = StyleSheet.create({
         backgroundColor: '#fff',
         alignSelf: 'center',
     },
+    categoryItem: {
+        fontSize: 18,
+        fontWeight: 'bold',
+    },
 });
