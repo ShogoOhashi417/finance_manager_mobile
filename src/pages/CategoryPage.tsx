@@ -1,30 +1,77 @@
-import React, { useState } from 'react';
-import { View, Text } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, FlatList } from 'react-native';
 import { theme } from '../styles/theme';
 import { TabView, SceneMap } from 'react-native-tab-view';
 
+const fetchIncomeCategoryData = async (setIncomeCategoryList: any) => {
+    try {
+        const apiUrl = 'http://localhost/api/v1/income_category';
+
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+            throw new Error('ネットワークの応答が正常ではありません');
+        }
+        const data = await response.json();
+        setIncomeCategoryList(data.income_category_info_list);
+    } catch (error) {
+        console.error('データの取得中にエラーが発生しました:', error);
+    }
+};
+
+const fetchExpenseCategoryData = async (setExpenseCategoryList: any) => {
+    try {
+        const apiUrl = 'http://localhost/api/v1/expenditure_category';
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+            throw new Error('ネットワークの応答が正常ではありません');
+        }
+        const data = await response.json();
+        setExpenseCategoryList(data.expenditure_category_info_list);
+    } catch (error) {
+        console.error('データの取得中にエラーが発生しました:', error);
+    }
+};
+
 const IncomeCategories = () => {
-    const incomeCategories = ['給与', '副収入', '投資'];
+    const [incomeCategoryList, setIncomeCategoryList] = useState([]);
+
+    useEffect(() => {
+        fetchIncomeCategoryData(setIncomeCategoryList);
+    }, []);
+
     return (
         <View>
-            {incomeCategories.map((category, index) => (
-                <View key={index} style={theme.item}>
-                    <Text style={theme.categoryItem}>{category}</Text>
-                </View>
-            ))}
+            <FlatList
+                data={incomeCategoryList}
+                keyExtractor={(item: { id: string }) => item.id}
+                renderItem={({ item }) => (
+                    <View style={theme.item}>
+                        <Text style={theme.description}>{item.name}</Text>
+                    </View>
+                )}
+            />
         </View>
     );
 };
 
 const ExpenseCategories = () => {
-    const expenseCategories = ['家賃', '食費', '交通費'];
+    const [expenseCategoryList, setExpenseCategoryList] = useState([]);
+
+    useEffect(() => {
+        fetchExpenseCategoryData(setExpenseCategoryList);
+    }, []);
+
     return (
         <View>
-            {expenseCategories.map((category, index) => (
-                <View key={index} style={theme.item}>
-                    <Text style={theme.categoryItem}>{category}</Text>
-                </View>
-            ))}
+            <FlatList
+                data={expenseCategoryList}
+                keyExtractor={(item: { id: string }) => item.id}
+                renderItem={({ item }) => (
+                    <View style={theme.item}>
+                        <Text style={theme.description}>{item.name}</Text>
+                    </View>
+                )}
+            />
         </View>
     );
 };
