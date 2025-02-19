@@ -1,36 +1,55 @@
-import React from 'react';
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text } from 'react-native';
 import { theme } from '../styles/theme';
+import { TabView, SceneMap } from 'react-native-tab-view';
+
+const IncomeCategories = () => {
+    const incomeCategories = ['給与', '副収入', '投資'];
+    return (
+        <View>
+            {incomeCategories.map((category, index) => (
+                <View key={index} style={theme.item}>
+                    <Text style={theme.categoryItem}>{category}</Text>
+                </View>
+            ))}
+        </View>
+    );
+};
+
+const ExpenseCategories = () => {
+    const expenseCategories = ['家賃', '食費', '交通費'];
+    return (
+        <View>
+            {expenseCategories.map((category, index) => (
+                <View key={index} style={theme.item}>
+                    <Text style={theme.categoryItem}>{category}</Text>
+                </View>
+            ))}
+        </View>
+    );
+};
 
 export const CategoryPage = () => {
-    const incomeCategories = ['給与', '副収入', '投資'];
-    const expenseCategories = ['家賃', '食費', '交通費'];
+    const [index, setIndex] = useState(0);
+    const routes = [
+        { key: 'income', title: '収入' },
+        { key: 'expense', title: '支出' },
+    ];
+
+    const sceneMap = SceneMap({
+        income: IncomeCategories,
+        expense: ExpenseCategories,
+    });
 
     return (
         <View style={theme.container}>
             <Text style={theme.title}>カテゴリー管理</Text>
-            <View style={theme.tabContainer}>
-                <TouchableOpacity style={theme.tab}>
-                    <Text style={theme.tabText}>収入カテゴリー</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={theme.tab}>
-                    <Text style={theme.tabText}>支出カテゴリー</Text>
-                </TouchableOpacity>
-            </View>
-            <ScrollView>
-                <View style={theme.table}>
-                    <Text style={theme.tableHeader}>収入カテゴリー</Text>
-                    {incomeCategories.map((category, index) => (
-                        <Text key={index} style={theme.tableRow}>{category}</Text>
-                    ))}
-                </View>
-                <View style={theme.table}>
-                    <Text style={theme.tableHeader}>支出カテゴリー</Text>
-                    {expenseCategories.map((category, index) => (
-                        <Text key={index} style={theme.tableRow}>{category}</Text>
-                    ))}
-                </View>
-            </ScrollView>
+            <TabView
+                navigationState={{ index, routes }}
+                renderScene={sceneMap}
+                onIndexChange={setIndex}
+                initialLayout={{ width: 300 }}
+            />
         </View>
     );
 };
