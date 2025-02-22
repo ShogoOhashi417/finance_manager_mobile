@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, Button } from 'react-native';
 import { theme } from '../styles/theme';
 import { TabView, SceneMap } from 'react-native-tab-view';
+import { useNavigation } from '@react-navigation/native';
 
 const fetchIncomeCategoryData = async (setIncomeCategoryList: any) => {
     try {
@@ -39,8 +40,11 @@ const IncomeCategories = () => {
         fetchIncomeCategoryData(setIncomeCategoryList);
     }, []);
 
+    const navigation = useNavigation();
+
     return (
         <View>
+            <Button title="収入カテゴリー追加" onPress={() => navigation.navigate('AddIncomeCategoryPage')} />
             <FlatList
                 data={incomeCategoryList}
                 keyExtractor={(item: { id: string }) => item.id}
@@ -61,8 +65,11 @@ const ExpenseCategories = () => {
         fetchExpenseCategoryData(setExpenseCategoryList);
     }, []);
 
+    const navigation = useNavigation();
+
     return (
         <View>
+            <Button title="支出カテゴリー追加" onPress={() => navigation.navigate('AddExpenseCategoryPage')} />
             <FlatList
                 data={expenseCategoryList}
                 keyExtractor={(item: { id: string }) => item.id}
