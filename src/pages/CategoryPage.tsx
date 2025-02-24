@@ -77,7 +77,7 @@ const ExpenseCategories = () => {
                     <View style={theme.item}>
                         <Text
                             style={theme.description}
-                            onPress={() => navigation.navigate('EditExpenseCategoryPage', { categoryId: item.id })}
+                            onPress={() => navigation.navigate('EditExpenseCategoryPage', { categoryId: item.id, categoryName: item.name })}
                         >{item.name}</Text>
                     </View>
                 )}

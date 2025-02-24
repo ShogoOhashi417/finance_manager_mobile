@@ -5,12 +5,11 @@ import axios from 'axios';
 
 // TODO: エンドポイントを変更
 const csrfTokenUrl = 'http://localhost/api/v1/csrf-token';
-const getCategoryUrl = (id: string) => `http://localhost/api/v1/expenditure_category/${id}`;
 const updateCategoryUrl = (id: string) => `http://localhost/api/v1/expenditure_category/${id}`;
 
 export const EditExpenseCategoryPage = ({ route, navigation }: { route: any; navigation: any }) => {
-    const { categoryId } = route.params;
-    const [categoryName, setCategoryName] = useState('');
+    const { categoryId, categoryName } = route.params;
+    const [name, setName] = useState(categoryName);
     const [csrfToken, setCsrfToken] = useState('');
 
     useEffect(() => {
@@ -23,17 +22,7 @@ export const EditExpenseCategoryPage = ({ route, navigation }: { route: any; nav
             }
         };
 
-        const fetchCategory = async () => {
-            try {
-                const response = await axios.get(getCategoryUrl(categoryId));
-                setCategoryName(response.data.expenditureCategoryName);
-            } catch (error) {
-                console.error('カテゴリの取得に失敗しました:', error);
-            }
-        };
-
         fetchCsrfToken();
-        fetchCategory();
     }, [categoryId]);
 
     const updateCategory = async () => {
@@ -56,8 +45,8 @@ export const EditExpenseCategoryPage = ({ route, navigation }: { route: any; nav
             <Text style={theme.title}>支出カテゴリ編集</Text>
             <TextInput
                 placeholder="カテゴリ名"
-                value={categoryName}
-                onChangeText={setCategoryName}
+                value={name}
+                onChangeText={setName}
                 style={theme.input}
             />
             <Button title="更新" onPress={updateCategory} />
