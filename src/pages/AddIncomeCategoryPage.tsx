@@ -5,7 +5,7 @@ import axios from 'axios';
 
 // TODO: エンドポイントを変更
 const csrfTokenUrl = 'http://localhost/api/v1/csrf-token';
-const saveCategoryUrl = 'http://localhost/api/v1/category';
+const saveCategoryUrl = 'http://localhost/api/v1/income_category';
 
 export const AddIncomeCategoryPage = ({ navigation }: { navigation: any }) => {
     const [categoryName, setCategoryName] = useState('');
@@ -27,13 +27,13 @@ export const AddIncomeCategoryPage = ({ navigation }: { navigation: any }) => {
     const saveCategory = async () => {
         try {
             await axios.post(saveCategoryUrl, {
-                category_name: categoryName,
+                incomeCategoryName: categoryName,
             }, {
                 headers: {
-                    'X-CSRF-TOKEN': csrfToken, // CSRFトークンをヘッダーに追加
+                    'X-CSRF-TOKEN': csrfToken,
                 },
             });
-            navigation.goBack();
+            navigation.navigate('CategoryPage');
         } catch (error) {
             console.error('カテゴリの保存に失敗しました:', error);
         }
