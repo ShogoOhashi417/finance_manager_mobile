@@ -28,7 +28,7 @@ export const EditExpenseCategoryPage = ({ route, navigation }: { route: any; nav
     const updateCategory = async () => {
         try {
             await axios.put(updateCategoryUrl(categoryId), {
-                expenditureCategoryName: categoryName,
+                expenditureCategoryName: name,
             }, {
                 headers: {
                     'X-CSRF-TOKEN': csrfToken,
