@@ -75,7 +75,10 @@ const ExpenseCategories = () => {
                 keyExtractor={(item: { id: string }) => item.id}
                 renderItem={({ item }) => (
                     <View style={theme.item}>
-                        <Text style={theme.description}>{item.name}</Text>
+                        <Text
+                            style={theme.description}
+                            onPress={() => navigation.navigate('EditExpenseCategoryPage', { categoryId: item.id, categoryName: item.name })}
+                        >{item.name}</Text>
                     </View>
                 )}
             />

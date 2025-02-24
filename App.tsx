@@ -9,6 +9,7 @@ import { AddExpensePage } from './src/pages/AddExpensePage';
 import { AddIncomePage } from './src/pages/AddIncomePage';
 import { AddIncomeCategoryPage } from './src/pages/AddIncomeCategoryPage';
 import { AddExpenseCategoryPage } from './src/pages/AddExpenseCategoryPage';
+import { EditExpenseCategoryPage } from './src/pages/EditExpenseCategoryPage';
 
 const Stack = createStackNavigator();
 
@@ -24,6 +25,7 @@ const App = () => {
                 <Stack.Screen name="AddIncomePage" component={AddIncomePage} />
                 <Stack.Screen name="AddIncomeCategoryPage" component={AddIncomeCategoryPage} />
                 <Stack.Screen name="AddExpenseCategoryPage" component={AddExpenseCategoryPage} />
+                <Stack.Screen name="EditExpenseCategoryPage" component={EditExpenseCategoryPage} />
             </Stack.Navigator>
         </NavigationContainer>
     );
