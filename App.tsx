@@ -18,16 +18,16 @@ const App = () => {
     return (
         <NavigationContainer>
             <Stack.Navigator initialRouteName="TestPage">
-                <Stack.Screen name="TestPage" component={TestPage} />
-                <Stack.Screen name="IncomePage" component={IncomePage} />
-                <Stack.Screen name="ExpensePage" component={ExpensePage} />
-                <Stack.Screen name="CategoryPage" component={CategoryPage} />
-                <Stack.Screen name="AddExpensePage" component={AddExpensePage} />
-                <Stack.Screen name="AddIncomePage" component={AddIncomePage} />
-                <Stack.Screen name="AddIncomeCategoryPage" component={AddIncomeCategoryPage} />
-                <Stack.Screen name="AddExpenseCategoryPage" component={AddExpenseCategoryPage} />
-                <Stack.Screen name="EditExpenseCategoryPage" component={EditExpenseCategoryPage} />
-                <Stack.Screen name="EditIncomeCategoryPage" component={EditIncomeCategoryPage} />
+                <Stack.Screen name="TestPage" component={TestPage} options={{ title: 'トップ' }} />
+                <Stack.Screen name="IncomePage" component={IncomePage} options={{ title: '収入管理' }} />
+                <Stack.Screen name="ExpensePage" component={ExpensePage} options={{ title: '支出管理' }} />
+                <Stack.Screen name="CategoryPage" component={CategoryPage} options={{ title: 'カテゴリ管理' }} />
+                <Stack.Screen name="AddExpensePage" component={AddExpensePage} options={{ title: '支出追加' }} />
+                <Stack.Screen name="AddIncomePage" component={AddIncomePage} options={{ title: '収入追加' }} />
+                <Stack.Screen name="AddIncomeCategoryPage" component={AddIncomeCategoryPage} options={{ title: '収入カテゴリ追加' }} />
+                <Stack.Screen name="AddExpenseCategoryPage" component={AddExpenseCategoryPage} options={{ title: '支出カテゴリ追加' }} />
+                <Stack.Screen name="EditExpenseCategoryPage" component={EditExpenseCategoryPage} options={{ title: '支出カテゴリ編集' }} />
+                <Stack.Screen name="EditIncomeCategoryPage" component={EditIncomeCategoryPage} options={{ title: '収入カテゴリ編集' }} />
             </Stack.Navigator>
         </NavigationContainer>
     );
