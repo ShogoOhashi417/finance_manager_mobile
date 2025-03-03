@@ -17,8 +17,8 @@ const Stack = createStackNavigator();
 const App = () => {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="TestPage">
-                <Stack.Screen name="TestPage" component={TestPage} options={{ title: 'トップ' }} />
+            <Stack.Navigator initialRouteName="TopPage">
+                <Stack.Screen name="TopPage" component={TestPage} options={{ title: 'トップ' }} />
                 <Stack.Screen name="IncomePage" component={IncomePage} options={{ title: '収入管理' }} />
                 <Stack.Screen name="ExpensePage" component={ExpensePage} options={{ title: '支出管理' }} />
                 <Stack.Screen name="CategoryPage" component={CategoryPage} options={{ title: 'カテゴリ管理' }} />
