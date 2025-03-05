@@ -27,6 +27,10 @@ export const ExpensePage = () => {
         fetchData(setExpenditureList);
     }, []);
 
+    const navigateToEditExpensePage = (expenseId: string) => {
+        navigation.navigate('EditExpensePage', { expenseId });
+    };
+
     return (
         <View style={theme.container}>
             <Text style={theme.title}>支出管理</Text>
@@ -36,7 +40,10 @@ export const ExpensePage = () => {
                 keyExtractor={(item: { id: string }) => item.id}
                 renderItem={({ item }) => (
                     <View style={theme.item}>
-                        <Text style={theme.description}>{item.name}</Text>
+                        <Text
+                            style={theme.description}
+                        onPress={() => navigateToEditExpensePage(item.id)}
+                        >{item.name}</Text>
                         <Text style={theme.amount}>{item.amount}</Text>
                     </View>
                 )}
