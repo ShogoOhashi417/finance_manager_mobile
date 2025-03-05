@@ -5,11 +5,11 @@ import axios from 'axios';
 
 // TODO: エンドポイントを変更
 const csrfTokenUrl = 'http://localhost/api/v1/csrf-token';
-const updateExpenseUrl = (id: string) => `http://localhost/api/v1/expense/${id}`;
+const updateExpenseUrl = () => `http://localhost/api/v1/expenditure/update`;
 
 export const EditExpensePage = ({ route, navigation }: { route: any; navigation: any }) => {
-    const { expenseId } = route.params; // 支出IDを受け取る
-    const [description, setDescription] = useState('');
+    const { expenseId } = route.params;
+    const [name, setName] = useState('');
     const [amount, setAmount] = useState('');
     const [date, setDate] = useState('');
     const [category, setCategory] = useState('');
@@ -30,17 +30,18 @@ export const EditExpensePage = ({ route, navigation }: { route: any; navigation:
 
     const updateExpense = async () => {
         try {
-            await axios.put(updateExpenseUrl(expenseId), {
-                expense_name: description,
-                expense_amount: amount,
+            await axios.put(updateExpenseUrl(), {
+                id: expenseId,
+                expenditure_name: name,
+                expenditure_amount: amount,
                 calendar_date: date,
-                expense_category_id: category,
+                expenditure_category_id: category,
             }, {
                 headers: {
                     'X-CSRF-TOKEN': csrfToken, // CSRFトークンをヘッダーに追加
                 },
             });
-            navigation.goBack();
+            navigation.navigate('ExpensePage');
         } catch (error) {
             console.error('支出の更新に失敗しました:', error);
         }
@@ -51,8 +52,8 @@ export const EditExpensePage = ({ route, navigation }: { route: any; navigation:
             <Text style={theme.title}>支出編集</Text>
             <TextInput
                 placeholder="支出名"
-                value={description}
-                onChangeText={setDescription}
+                value={name}
+                onChangeText={setName}
                 style={theme.input}
             />
             <TextInput
