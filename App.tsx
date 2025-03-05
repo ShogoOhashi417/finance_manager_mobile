@@ -8,6 +8,7 @@ import { CategoryPage } from './src/pages/CategoryPage';
 import { AddExpensePage } from './src/pages/AddExpensePage';
 import { AddIncomePage } from './src/pages/AddIncomePage';
 import { EditIncomePage } from './src/pages/EditIncomePage';
+import { EditExpensePage } from './src/pages/EditExpensePage';
 import { AddIncomeCategoryPage } from './src/pages/AddIncomeCategoryPage';
 import { AddExpenseCategoryPage } from './src/pages/AddExpenseCategoryPage';
 import { EditIncomeCategoryPage } from './src/pages/EditIncomeCategoryPage';
@@ -26,6 +27,7 @@ const App = () => {
                 <Stack.Screen name="AddExpensePage" component={AddExpensePage} options={{ title: '支出追加' }} />
                 <Stack.Screen name="AddIncomePage" component={AddIncomePage} options={{ title: '収入追加' }} />
                 <Stack.Screen name="EditIncomePage" component={EditIncomePage} options={{ title: '収入編集' }} />
+                <Stack.Screen name="EditExpensePage" component={EditExpensePage} options={{ title: '支出編集' }} />
                 <Stack.Screen name="AddIncomeCategoryPage" component={AddIncomeCategoryPage} options={{ title: '収入カテゴリ追加' }} />
                 <Stack.Screen name="AddExpenseCategoryPage" component={AddExpenseCategoryPage} options={{ title: '支出カテゴリ追加' }} />
                 <Stack.Screen name="EditExpenseCategoryPage" component={EditExpenseCategoryPage} options={{ title: '支出カテゴリ編集' }} />
