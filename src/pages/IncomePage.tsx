@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, Button } from 'react-native';
+import { View, Text, FlatList, Button, ScrollView } from 'react-native';
 import { theme } from '../styles/theme';
 import { useNavigation } from '@react-navigation/native';
 
@@ -31,20 +31,23 @@ export const IncomePage = () => {
         <View style={theme.container}>
             <Text style={theme.title}>収入管理</Text>
             <Button title="収入追加" onPress={() => navigation.navigate('AddIncomePage')} />
-            <FlatList
-                data={incomeList}
-                keyExtractor={(item: { id: string }) => item.id}
-                renderItem={({ item }) => (
-                    <View style={theme.item}>
-                        <Text
-                            style={theme.description}
-                            onPress={() => navigation.navigate('EditIncomePage', { incomeId: item.id })}
-                        >{item.name}</Text>
-                        <Text style={theme.amount}>{item.amount}</Text>
-                        <Text style={theme.description}>{item.calendar_date}</Text>
-                    </View>
-                )}
-            />
+            <ScrollView horizontal>
+                <FlatList
+                    data={incomeList}
+                    keyExtractor={(item: { id: string }) => item.id}
+                    renderItem={({ item }) => (
+                        <View style={theme.item}>
+                            <Text
+                                style={theme.description}
+                                onPress={() => navigation.navigate('EditIncomePage', { incomeId: item.id })}
+                            >{item.name}</Text>
+                            <Text style={theme.amount}>{item.amount}</Text>
+                            <Text style={theme.description}>{item.calendar_date}</Text>
+                            <Text style={theme.description}></Text>
+                        </View>
+                    )}
+                />
+            </ScrollView>
         </View>
     );
 };
