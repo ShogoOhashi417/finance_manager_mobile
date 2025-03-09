@@ -42,9 +42,10 @@ export const ExpensePage = () => {
                     <View style={theme.item}>
                         <Text
                             style={theme.description}
-                        onPress={() => navigateToEditExpensePage(item.id)}
+                            onPress={() => navigateToEditExpensePage(item.id)}
                         >{item.name}</Text>
                         <Text style={theme.amount}>{item.amount}</Text>
+                        <Text style={theme.description}>{item.calendar_date}</Text>
                     </View>
                 )}
             />
