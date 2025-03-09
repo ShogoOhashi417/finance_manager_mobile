@@ -53,10 +53,12 @@ export const theme = StyleSheet.create({
     },
     description: {
         fontSize: 18,
+        width: '32%',
     },
     amount: {
         fontSize: 18,
         color: '#28a745',
+        width: '24%',
     },
     modalView: {
         flex: 1,
