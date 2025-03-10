@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, Button} from 'react-native';
+import { View, Text, FlatList, Button, ScrollView } from 'react-native';
 import { theme } from '../styles/theme';
 import { useNavigation } from '@react-navigation/native';
 
@@ -35,20 +35,31 @@ export const ExpensePage = () => {
         <View style={theme.container}>
             <Text style={theme.title}>支出管理</Text>
             <Button title="支出追加" onPress={() => navigation.navigate('AddExpensePage')} />
-            <FlatList
-                data={expenditureList}
-                keyExtractor={(item: { id: string }) => item.id}
+            <ScrollView horizontal>
+                <FlatList
+                    data={expenditureList}
+                    keyExtractor={(item: { id: string }) => item.id}
                 renderItem={({ item }) => (
                     <View style={theme.item}>
                         <Text
                             style={theme.description}
                             onPress={() => navigateToEditExpensePage(item.id)}
-                        >{item.name}</Text>
-                        <Text style={theme.amount}>{item.amount}</Text>
-                        <Text style={theme.description}>{item.calendar_date}</Text>
+                        >
+                            {item.name}
+                        </Text>
+                        <Text style={theme.amount}>
+                            {item.amount}
+                        </Text>
+                        <Text style={theme.description}>
+                            {item.calendar_date}
+                        </Text>
+                        <Text style={theme.description}>
+                            {item.category_name}
+                        </Text>
                     </View>
                 )}
             />
+            </ScrollView>
         </View>
     );
 };
