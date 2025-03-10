@@ -39,7 +39,7 @@ export const IncomePage = () => {
                         <View style={theme.item}>
                             <Text
                                 style={theme.description}
-                                onPress={() => navigation.navigate('EditIncomePage', { incomeId: item.id })}
+                                onPress={() => navigation.navigate('EditIncomePage', { incomeId: item.id, incomeName: item.name, incomeAmount: item.amount, incomeDate: item.calendar_date, incomeCategory: item.category_name })}
                             >{item.name}</Text>
                             <Text style={theme.amount}>
                                 {item.amount}
