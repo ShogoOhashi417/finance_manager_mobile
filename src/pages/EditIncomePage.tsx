@@ -5,14 +5,14 @@ import axios from 'axios';
 
 // TODO: エンドポイントを変更
 const csrfTokenUrl = 'http://localhost/api/v1/csrf-token';
-const updateIncomeUrl = (id: string) => `http://localhost/api/v1/income/${id}`;
+const updateIncomeUrl = (id: string) => `http://localhost/api/v1/income/update/${id}`;
 
 export const EditIncomePage = ({ route, navigation }: { route: any; navigation: any }) => {
-    const { incomeId } = route.params; // 収入IDを受け取る
-    const [description, setDescription] = useState('');
-    const [amount, setAmount] = useState('');
-    const [date, setDate] = useState('');
-    const [category, setCategory] = useState('');
+    const { incomeId, incomeName, incomeAmount, incomeDate, incomeCategory } = route.params;
+    const [description, setDescription] = useState(incomeName);
+    const [amount, setAmount] = useState(String(incomeAmount));
+    const [date, setDate] = useState(incomeDate);
+    const [category, setCategory] = useState(incomeCategory);
     const [csrfToken, setCsrfToken] = useState('');
 
     useEffect(() => {
@@ -40,7 +40,7 @@ export const EditIncomePage = ({ route, navigation }: { route: any; navigation: 
                     'X-CSRF-TOKEN': csrfToken, // CSRFトークンをヘッダーに追加
                 },
             });
-            navigation.goBack();
+            navigation.navigate('IncomePage');
         } catch (error) {
             console.error('収入の更新に失敗しました:', error);
         }
