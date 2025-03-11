@@ -27,6 +27,19 @@ export const IncomePage = () => {
         fetchData(setIncomeList);
     }, []);
 
+    const navigateToEditIncomePage = (
+        incomeId: string,
+        incomeName: string,
+        incomeAmount: string,
+        incomeDate: string,
+        incomeCategory: string
+    ) => {
+        navigation.navigate(
+            'EditIncomePage',
+            { incomeId, incomeName, incomeAmount, incomeDate, incomeCategory }
+        );
+    };
+
     return (
         <View style={theme.container}>
             <Text style={theme.title}>収入管理</Text>
@@ -39,8 +52,16 @@ export const IncomePage = () => {
                         <View style={theme.item}>
                             <Text
                                 style={theme.description}
-                                onPress={() => navigation.navigate('EditIncomePage', { incomeId: item.id, incomeName: item.name, incomeAmount: item.amount, incomeDate: item.calendar_date, incomeCategory: item.category_name })}
-                            >{item.name}</Text>
+                                onPress={() => navigateToEditIncomePage(
+                                    item.id,
+                                    item.name,
+                                    item.amount,
+                                    item.calendar_date,
+                                    item.category_name
+                                )}
+                            >
+                                {item.name}
+                            </Text>
                             <Text style={theme.amount}>
                                 {item.amount}
                             </Text>

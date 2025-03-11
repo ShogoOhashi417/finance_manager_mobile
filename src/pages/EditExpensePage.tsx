@@ -8,11 +8,11 @@ const csrfTokenUrl = 'http://localhost/api/v1/csrf-token';
 const updateExpenseUrl = () => `http://localhost/api/v1/expenditure/update`;
 
 export const EditExpensePage = ({ route, navigation }: { route: any; navigation: any }) => {
-    const { expenseId } = route.params;
-    const [name, setName] = useState('');
-    const [amount, setAmount] = useState('');
-    const [date, setDate] = useState('');
-    const [category, setCategory] = useState('');
+    const { expenseId, expenseName, expenseAmount, expenseDate, expenseCategory } = route.params;
+    const [name, setName] = useState(expenseName);
+    const [amount, setAmount] = useState(String(expenseAmount));
+    const [date, setDate] = useState(expenseDate);
+    const [category, setCategory] = useState(expenseCategory);
     const [csrfToken, setCsrfToken] = useState('');
 
     useEffect(() => {
