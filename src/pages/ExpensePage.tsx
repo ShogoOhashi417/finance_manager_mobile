@@ -27,8 +27,8 @@ export const ExpensePage = () => {
         fetchData(setExpenditureList);
     }, []);
 
-    const navigateToEditExpensePage = (expenseId: string) => {
-        navigation.navigate('EditExpensePage', { expenseId });
+    const navigateToEditExpensePage = (expenseId: string, expenseName: string, expenseAmount: string, expenseDate: string, expenseCategory: string) => {
+        navigation.navigate('EditExpensePage', { expenseId, expenseName, expenseAmount, expenseDate, expenseCategory });
     };
 
     return (
@@ -43,7 +43,13 @@ export const ExpensePage = () => {
                     <View style={theme.item}>
                         <Text
                             style={theme.description}
-                            onPress={() => navigateToEditExpensePage(item.id)}
+                            onPress={() => navigateToEditExpensePage(
+                                item.id,
+                                item.name,
+                                item.amount,
+                                item.calendar_date,
+                                item.category_name
+                            )}
                         >
                             {item.name}
                         </Text>
