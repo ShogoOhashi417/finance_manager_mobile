@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, Button, ScrollView } from 'react-native';
+import { View, Text, FlatList, Button, ScrollView, TouchableOpacity } from 'react-native';
 import { theme } from '../styles/theme';
 import { useNavigation } from '@react-navigation/native';
 
@@ -49,17 +49,17 @@ export const IncomePage = () => {
                     data={incomeList}
                     keyExtractor={(item: { id: string }) => item.id}
                     renderItem={({ item }) => (
-                        <View style={theme.item}>
-                            <Text
-                                style={theme.description}
-                                onPress={() => navigateToEditIncomePage(
-                                    item.id,
-                                    item.name,
-                                    item.amount,
-                                    item.calendar_date,
-                                    item.category_name
-                                )}
-                            >
+                        <TouchableOpacity
+                            style={theme.item}
+                            onPress={() => navigateToEditIncomePage(
+                                item.id,
+                                item.name,
+                                item.amount,
+                                item.calendar_date,
+                                item.category_name
+                            )}
+                        >
+                            <Text style={theme.description}>
                                 {item.name}
                             </Text>
                             <Text style={theme.amount}>
@@ -71,7 +71,7 @@ export const IncomePage = () => {
                             <Text style={theme.description}>
                                 {item.category_name}
                             </Text>
-                        </View>
+                        </TouchableOpacity>
                     )}
                 />
             </ScrollView>
