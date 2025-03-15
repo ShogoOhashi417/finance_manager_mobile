@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, Button, ScrollView } from 'react-native';
+import { View, Text, FlatList, Button, ScrollView, TouchableOpacity } from 'react-native';
 import { theme } from '../styles/theme';
 import { useNavigation } from '@react-navigation/native';
 
@@ -39,10 +39,9 @@ export const ExpensePage = () => {
                 <FlatList
                     data={expenditureList}
                     keyExtractor={(item: { id: string }) => item.id}
-                renderItem={({ item }) => (
-                    <View style={theme.item}>
-                        <Text
-                            style={theme.description}
+                    renderItem={({ item }) => (
+                        <TouchableOpacity
+                            style={theme.item}
                             onPress={() => navigateToEditExpensePage(
                                 item.id,
                                 item.name,
@@ -51,20 +50,21 @@ export const ExpensePage = () => {
                                 item.category_name
                             )}
                         >
-                            {item.name}
-                        </Text>
-                        <Text style={theme.amount}>
-                            {item.amount}
-                        </Text>
-                        <Text style={theme.description}>
-                            {item.calendar_date}
-                        </Text>
-                        <Text style={theme.description}>
-                            {item.category_name}
-                        </Text>
-                    </View>
-                )}
-            />
+                            <Text style={theme.description}>
+                                {item.name}
+                            </Text>
+                            <Text style={theme.amount}>
+                                {item.amount}
+                            </Text>
+                            <Text style={theme.description}>
+                                {item.calendar_date}
+                            </Text>
+                            <Text style={theme.description}>
+                                {item.category_name}
+                            </Text>
+                        </TouchableOpacity>
+                    )}
+                />
             </ScrollView>
         </View>
     );
