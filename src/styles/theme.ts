@@ -66,6 +66,11 @@ export const theme = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
     },
+    inputTitle: {
+        fontSize: 18,
+        width: '80%',
+        alignSelf: 'center',
+    },
     input: {
         borderWidth: 1,
         borderColor: '#ccc',
@@ -74,6 +79,7 @@ export const theme = StyleSheet.create({
         padding: 10,
         marginTop: 10,
         margin: 8,
+        marginBottom: 24,
         backgroundColor: '#fff',
         alignSelf: 'center',
     },
