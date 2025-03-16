@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, Button } from 'react-native';
+import { View, Text, FlatList, Button, TouchableOpacity } from 'react-native';
 import { theme } from '../styles/theme';
 import { TabView, SceneMap } from 'react-native-tab-view';
 import { useNavigation } from '@react-navigation/native';
@@ -49,14 +49,16 @@ const IncomeCategories = () => {
                 data={incomeCategoryList}
                 keyExtractor={(item: { id: string }) => item.id}
                 renderItem={({ item }) => (
-                    <View style={theme.item}>
+                    <TouchableOpacity
+                        style={theme.item}
+                        onPress={() => navigation.navigate('EditIncomeCategoryPage', { categoryId: item.id, categoryName: item.name })}
+                    >
                         <Text
                             style={theme.description}
-                            onPress={() => navigation.navigate('EditIncomeCategoryPage', { categoryId: item.id, categoryName: item.name })}
                         >
                             {item.name}
                         </Text>
-                    </View>
+                    </TouchableOpacity>
                 )}
             />
         </View>
@@ -79,12 +81,16 @@ const ExpenseCategories = () => {
                 data={expenseCategoryList}
                 keyExtractor={(item: { id: string }) => item.id}
                 renderItem={({ item }) => (
-                    <View style={theme.item}>
+                    <TouchableOpacity
+                        style={theme.item}
+                        onPress={() => navigation.navigate('EditExpenseCategoryPage', { categoryId: item.id, categoryName: item.name })}
+                    >
                         <Text
                             style={theme.description}
-                            onPress={() => navigation.navigate('EditExpenseCategoryPage', { categoryId: item.id, categoryName: item.name })}
-                        >{item.name}</Text>
-                    </View>
+                        >
+                            {item.name}
+                        </Text>
+                    </TouchableOpacity>
                 )}
             />
         </View>
