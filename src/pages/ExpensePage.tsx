@@ -47,7 +47,7 @@ export const ExpensePage = () => {
                                 item.name,
                                 item.amount,
                                 item.calendar_date,
-                                item.category_name
+                                item.category_id
                             )}
                         >
                             <Text style={theme.description}>

@@ -6,14 +6,14 @@ import PickerWithModal from '../components/PickerWithModal';
 
 // TODO: エンドポイントを変更
 const csrfTokenUrl = 'http://localhost/api/v1/csrf-token';
-const updateExpenseUrl = () => `http://localhost/api/v1/expenditure/update`;
+const updateExpenseUrl = (id: string) => `http://localhost/api/v1/expenditure/update/${id}`;
 
 export const EditExpensePage = ({ route, navigation }: { route: any; navigation: any }) => {
     const { expenseId, expenseName, expenseAmount, expenseDate, expenseCategory } = route.params;
     const [name, setName] = useState(expenseName);
     const [amount, setAmount] = useState(String(expenseAmount));
     const [date, setDate] = useState(expenseDate);
-    const [category, setCategory] = useState(expenseCategory);
+    const [category, setCategory] = useState(String(expenseCategory));
     const [csrfToken, setCsrfToken] = useState('');
     const [categories, setCategories] = useState([]);
 
@@ -44,8 +44,7 @@ export const EditExpensePage = ({ route, navigation }: { route: any; navigation:
 
     const updateExpense = async () => {
         try {
-            await axios.put(updateExpenseUrl(), {
-                id: expenseId,
+            await axios.put(updateExpenseUrl(expenseId), {
                 expenditure_name: name,
                 expenditure_amount: amount,
                 calendar_date: date,
