@@ -13,6 +13,7 @@ import { AddIncomeCategoryPage } from './src/pages/AddIncomeCategoryPage';
 import { AddExpenseCategoryPage } from './src/pages/AddExpenseCategoryPage';
 import { EditIncomeCategoryPage } from './src/pages/EditIncomeCategoryPage';
 import { EditExpenseCategoryPage } from './src/pages/EditExpenseCategoryPage';
+import { ReportPage } from './src/pages/ReportPage';
 
 const Stack = createStackNavigator();
 
@@ -24,6 +25,7 @@ const App = () => {
                 <Stack.Screen name="IncomePage" component={IncomePage} options={{ title: '収入管理' }} />
                 <Stack.Screen name="ExpensePage" component={ExpensePage} options={{ title: '支出管理' }} />
                 <Stack.Screen name="CategoryPage" component={CategoryPage} options={{ title: 'カテゴリ管理' }} />
+                <Stack.Screen name="ReportPage" component={ReportPage} options={{ title: 'レポート' }} />
                 <Stack.Screen name="AddExpensePage" component={AddExpensePage} options={{ title: '支出追加' }} />
                 <Stack.Screen name="AddIncomePage" component={AddIncomePage} options={{ title: '収入追加' }} />
                 <Stack.Screen name="EditIncomePage" component={EditIncomePage} options={{ title: '収入編集' }} />
